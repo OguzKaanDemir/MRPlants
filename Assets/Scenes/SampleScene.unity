@@ -2336,6 +2336,53 @@ Transform:
   m_Children: []
   m_Father: {fileID: 396942880}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &489281601
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 489281603}
+  - component: {fileID: 489281602}
+  m_Layer: 0
+  m_Name: Spawners
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &489281602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 489281601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9983975c1438354681574071d5832c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Flowers:
+  - {fileID: 4558815944104841381, guid: d399eaa7e698f0e4cbb8215017829f13, type: 3}
+  - {fileID: 5598140824568042657, guid: f57825af94bf9fc409c2fe54ae0e3661, type: 3}
+--- !u!4 &489281603
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 489281601}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &509732861
 GameObject:
   m_ObjectHideFlags: 0
@@ -3205,6 +3252,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d5a239a37f46364ca216d20cdf4a028, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_FlowerSpawner: {fileID: 489281602}
   m_SplinePrefab: {fileID: 8391510682304625659, guid: 457b60a4a56e4c544bffabd74a295ba0,
     type: 3}
   m_TargetPositionTransform: {fileID: 36028463}
@@ -8639,3 +8687,4 @@ SceneRoots:
   - {fileID: 410087041}
   - {fileID: 914659940}
   - {fileID: 1329687407}
+  - {fileID: 489281603}

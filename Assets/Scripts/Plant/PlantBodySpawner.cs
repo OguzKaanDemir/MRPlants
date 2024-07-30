@@ -8,6 +8,7 @@ namespace Scripts.Plant
 {
     public class PlantBodySpawner : MonoBehaviour
     {
+        [SerializeField] private FlowerSpawner m_FlowerSpawner;
         [SerializeField] private SplineComputer m_SplinePrefab;
         [SerializeField] private Transform m_TargetPositionTransform;
         [SerializeField] private float m_MinPointDistance;
@@ -20,6 +21,7 @@ namespace Scripts.Plant
         private SplineComputer m_LastSpline;
 
         private bool m_ShouldRePinch;
+        private bool m_PinchStarted;
 
         private void Start()
         {
@@ -35,6 +37,7 @@ namespace Scripts.Plant
         {
             if (m_Hand && m_Hand.IsPinching && !m_ShouldRePinch)
             {
+                m_PinchStarted = true;
                 m_Positions.Add(m_TargetPositionTransform.position);
 
                 if (m_Positions.Count == 1)
@@ -45,6 +48,7 @@ namespace Scripts.Plant
 
                 else if (Vector3.Distance(m_Positions[^1], m_Positions[^2]) > m_MinPointDistance)
                     AddSplinePoint();
+
                 else
                     m_Positions.RemoveAt(m_Positions.Count - 1);
 
@@ -75,6 +79,11 @@ namespace Scripts.Plant
         {
             m_Positions.Clear();
             m_ShouldRePinch = false;
+
+            if (m_PinchStarted)
+                m_FlowerSpawner.SpawnFlower(m_LastSpline);
+
+            m_PinchStarted = false;
         }
     }
 }
