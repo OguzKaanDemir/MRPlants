@@ -15,7 +15,7 @@ namespace Scripts.Tracking
             }
         }
 
-        private static OVRHand m_Hand;
+        private OVRHand m_Hand;
 
         private void Start()
         {
