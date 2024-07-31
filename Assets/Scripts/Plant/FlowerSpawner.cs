@@ -1,7 +1,7 @@
 using UnityEngine;
 using Dreamteck.Splines;
-using System.Collections.Generic;
 using System.Collections;
+using System.Collections.Generic;
 
 namespace Scripts.Plant
 {
@@ -9,21 +9,20 @@ namespace Scripts.Plant
     {
         [SerializeField] private List<SplineFollower> m_Flowers;
 
-        public void SpawnFlower(SplineComputer spline)
+        public void SpawnFlower(SplineComputer spline, LeafSpawner leafSpawner)
         {
             var flower = Instantiate(m_Flowers[Random.Range(0, m_Flowers.Count)]);
 
             flower.spline = spline;
-            StartCoroutine(ResetObjects(spline, flower));
+            leafSpawner.SetFlowerSpawned(true);
+            StartCoroutine(ResetObjects(flower));
         }
 
-        private IEnumerator ResetObjects(SplineComputer spline, SplineFollower follower)
+        private IEnumerator ResetObjects(SplineFollower follower)
         {
             yield return new WaitForSeconds(.5f);
 
             Destroy(follower);
-            Destroy(spline.GetComponent<TubeGenerator>());
-            Destroy(spline);
         }
     }
 }

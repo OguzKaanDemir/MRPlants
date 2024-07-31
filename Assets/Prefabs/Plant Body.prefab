@@ -13,8 +13,9 @@ GameObject:
   - component: {fileID: 3709280936183176765}
   - component: {fileID: 928392142646827960}
   - component: {fileID: 4700038853692106755}
+  - component: {fileID: -5335416730432442037}
   m_Layer: 0
-  m_Name: Spline Prefab
+  m_Name: Plant Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -214,3 +215,20 @@ MonoBehaviour:
   _revolve: 360
   _capUVScale: 1
   _uvTwist: 0
+--- !u!114 &-5335416730432442037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1618052384051926313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebbc6cf1e6a61bb4593625ac08acf357, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Leafs:
+  - {fileID: 4485559929390108790, guid: 3c6e8be6a78a6d442aa61e07a8ef7f05, type: 3}
+  m_SpawnRate: 0.25
+  m_MinSpawnLength: 10
+  m_AnimationDuration: 1.12

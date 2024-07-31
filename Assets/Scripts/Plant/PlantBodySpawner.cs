@@ -8,13 +8,14 @@ namespace Scripts.Plant
 {
     public class PlantBodySpawner : MonoBehaviour
     {
+        [SerializeField] private PinchDetector m_Hand;
         [SerializeField] private FlowerSpawner m_FlowerSpawner;
         [SerializeField] private SplineComputer m_SplinePrefab;
         [SerializeField] private Transform m_TargetPositionTransform;
         [SerializeField] private float m_MinPointDistance;
         [SerializeField] private int m_MaxBodyLength;
 
-        private PinchDetector m_Hand;
+        private LeafSpawner m_LeafSpawner;
         private List<Vector3> m_Positions = new();
         private List<SplinePoint> m_Points = new();
 
@@ -22,11 +23,6 @@ namespace Scripts.Plant
 
         private bool m_ShouldRePinch;
         private bool m_PinchStarted;
-
-        private void Start()
-        {
-            m_Hand = GetComponent<PinchDetector>();
-        }
 
         private void Update()
         {
@@ -64,15 +60,20 @@ namespace Scripts.Plant
         private void CreateSpline()
         {
             m_LastSpline = Instantiate(m_SplinePrefab, Vector3.zero, Quaternion.identity);
+            m_LeafSpawner = m_LastSpline.GetComponent<LeafSpawner>();
         }
 
         private void AddSplinePoint()
         {
             m_Points = m_LastSpline.GetPoints().ToList();
 
-            m_Points.Add(new SplinePoint(m_Positions[^1]));
+            var point = new SplinePoint(m_Positions[^1]);
+
+            m_Points.Add(point);
             m_LastSpline.SetPoints(m_Points.ToArray());
             m_LastSpline.Rebuild();
+
+            m_LeafSpawner.AddNewLeaf(point);
         }
 
         private void ResetPinch()
@@ -81,7 +82,7 @@ namespace Scripts.Plant
             m_ShouldRePinch = false;
 
             if (m_PinchStarted)
-                m_FlowerSpawner.SpawnFlower(m_LastSpline);
+                m_FlowerSpawner.SpawnFlower(m_LastSpline, m_LeafSpawner);
 
             m_PinchStarted = false;
         }
