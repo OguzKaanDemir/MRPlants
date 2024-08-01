@@ -70,7 +70,7 @@ namespace Scripts.Plant
             SetLeaf(leaf, point);
             Destroy(leaf);
 
-            yield return new WaitForSeconds(m_PlantSpawner.GetAnimationDuration);
+            yield return new WaitForSeconds(m_PlantSpawner.GetAnimationDuration / 3);
         }
 
         private SplineFollower CreateLeaf()
