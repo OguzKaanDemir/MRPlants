@@ -37,7 +37,6 @@ public class OptimizeMesh : MonoBehaviour
         _renderer = GetComponent<MeshFilter>();
         _mesh = _renderer.sharedMesh;
     }
-#if UNITY_EDITOR
     // Update is called once per frame
     void Update()
     {
@@ -49,16 +48,14 @@ public class OptimizeMesh : MonoBehaviour
 
     public void DecimateMesh()
     {
-        if (!EditorApplication.isPlaying)
-        {
             var meshSimplifier = new UnityMeshSimplifier.MeshSimplifier();
             meshSimplifier.Initialize(_mesh);
             meshSimplifier.SimplifyMesh(_quality);
             var destMesh = meshSimplifier.ToMesh();
             _renderer.sharedMesh = destMesh;
-        }
     }
 
+#if UNITY_EDITOR
     public void SaveMesh()
     {
         if (!EditorApplication.isPlaying)
